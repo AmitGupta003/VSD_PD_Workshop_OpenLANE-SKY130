@@ -76,14 +76,14 @@ The foundry provides companies and individuals with interface files so that they
 
 ![Screenshot 2023-06-02 215355](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/7091679f-6957-4a41-b27b-6bfe97fa53c8)
 
-An Overview of RISC-V
+Introduction to RISC-V
 ------------------------------
 Instruction set architecture (ISA) RISC-V
 If a C programme is to be run on a specific layout, it is first compiled into ALP (depending on the architecture) and then transformed into Machine language (binary).
 The RISC-V should be implemented using a specific RTL.
 The entire process begins with RISC-V architecture, then moves on to RTL, and finally to layout.
 
-Everything from software to hardware
+From software applications to hardware
 ------------------------------
 Apps are executed on hardware.
 The application software enters the System software block, which turns it into binary format that the hardware can interpret.
@@ -95,3 +95,38 @@ The instructions of the compiler output will be determined by the chip architect
 Depending on the language, the input to the compiler follows a standard format.
 We require an HDL (RTL) that implements the specified implementations from assembler to hardware.
 This RTL is synthesised into a netlist of gates, which is then translated into layout.
+
+SoC Design and OpenLANE
+-----------------------------
+Introduction to all components of open-source digital ASIC Design
+----------------------------------
+Designing Digital ASICs necessitates a number of factors, including:
+EDA Tools for RTL IPs
+
+Data from PDKs (process design kits)
+There are numerous open source RTL designs available on the internet, including librecores.org, opencores.org, and github.com.
+Some EDA tools, such as Spice simulator and Magic, are free source.
+PDK Initially, the design of an integrated circuit was intimately interwoven with the manufacturing techniques accessible inside each organisation.
+
+Lynn Conway and Carver Mead recognised the need to separate design from technology, and thus the Lambda-based rules were developed.
+
+Since then, we've seen Pure Play Fabs (businesses that just manufacture) and Fabless (companies that only design).
+
+The PDK serves as a bridge between the FAB and the designers.
+
+The PDK contains
+
+Information about device models and technologies
+I/O libraries, for example.
+Google entered into a deal with Skywater and issued the first open PDK, known as the FOSS 130nm skywater PDK.
+
+The current market share for the 130nm process is 6%, which is still a significant portion of the market. Because of its maturity, the fabrication node for this node is frequently less expensive.
+
+ASIC design entails numerous processes.
+
+The major goal of this flow is to convert the RTL Design to the GDSII format, which is then used by the fabs.
+
+Since then, we've seen Pure Play Fabs (businesses that just manufacture) and Fabless (companies that only design).
+
+The PDK serves as a bridge between the FAB and the designers.
+
