@@ -33,3 +33,9 @@ Day 5: Final steps for RTL2GDS
 •Routing and design rule check (DRC)
 •Power distribution network and routing
 •TritonRoute features
+
+
+Day-1
+-------------------------------------------
+How to talk to computers
+Introduction to QFN-48 Package, chip, pads, core, die and IPs
