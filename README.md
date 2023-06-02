@@ -64,5 +64,15 @@ The foundry sends interface files to companies/individuals so that they can comm
 
 
 If an example of RISC V SoC is taken, the SoC will look like
+Foundry IPs are the PLL, SRAM, and other components.
+
+A foundry is essentially a sizable factory with equipment for producing silicon chips.
+One must regularly communicate with the foundry as a physical design engineer.
+
+The macros are the visible digital blocks.
+
+Between macros and IPs, there is a key difference that can be easily understood by saying that IPs take some level of intellect to generate, whereas macros are fundamental digital building blocks.
+The foundry provides companies and individuals with interface files so that they can communicate with the foundry.
+
 ![Screenshot 2023-06-02 215355](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/7091679f-6957-4a41-b27b-6bfe97fa53c8)
 
