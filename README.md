@@ -104,9 +104,6 @@ Introduction to all components of open-source digital ASIC Design
 
 ![WhatsApp Image 2023-06-02 at 22 18 35](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/71841dbd-c288-4144-bc69-d3e4d98e98dd)
 
-![WhatsApp Image 2023-06-02 at 22 20 00](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/0038533c-116b-41d7-a0fb-6d7c8e2b265e)
-
-
 Designing Digital ASICs necessitates a number of factors, including:
 EDA Tools for RTL IPs
 
@@ -140,7 +137,7 @@ The PDK serves as a bridge between the FAB and the designers.
 
 Simplified RTL to GDSII flow
 ---------------------------------
-![image](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/a99ef3d9-465f-4800-8652-b9529819d0b7)
+![WhatsApp Image 2023-06-02 at 22 20 00](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/0038533c-116b-41d7-a0fb-6d7c8e2b265e)
 
 Placement of Synthesis
 Power/Floor Planning
