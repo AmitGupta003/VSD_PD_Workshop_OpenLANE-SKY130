@@ -133,6 +133,8 @@ The PDK serves as a bridge between the FAB and the designers.
 
 Simplified RTL to GDSII flow
 ---------------------------------
+![image](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/a99ef3d9-465f-4800-8652-b9529819d0b7)
+
 Placement of Synthesis
 Power/Floor Planning
 The synthesis of a clock tree
