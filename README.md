@@ -173,3 +173,24 @@ Routeing details: The actual wiring is implemented using the routing guides.
 As a final note,
 DRC (Design rule check), LVS (makes sure the final netlist matches the gate level schematic) are examples of physical verifications.
 Timing verification through STA(Static timing analysis)
+
+
+Introduction to openLane and STRIVE chipsets
+--------------------------------------
+![WhatsApp Image 2023-06-02 at 22 23 53](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/dd6fe58d-b3f9-4641-b845-3ebe8aa46ee2)
+
+The work becomes more difficult when openSource EDA tools are used.
+
+OpenLANE is a free and open source networking protocol.
+Openlane is a truly open source tapeout experience with an open source flow.
+STRIVE Efabless provides SoCs.
+Strive, 2, 2a, 3, 5, 6 are all members of this family.
+The primary purpose of OpenLANE is to generate a clean GDSII with no human intervention.
+The skywater 130nm PDK is optimised for OpenLANE.
+It operates in two modes:
+Autonomous
+The design space exploration function of Interactive openLANE can be used to determine the optimal collection of flow configurations.
+It also includes a vast number of design examples.
+
+Introduction to openLANE detailed ASIC Flow design
+--------------------------
