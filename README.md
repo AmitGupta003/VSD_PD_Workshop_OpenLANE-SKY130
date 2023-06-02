@@ -82,3 +82,16 @@ Instruction set architecture (ISA) RISC-V
 If a C programme is to be run on a specific layout, it is first compiled into ALP (depending on the architecture) and then transformed into Machine language (binary).
 The RISC-V should be implemented using a specific RTL.
 The entire process begins with RISC-V architecture, then moves on to RTL, and finally to layout.
+
+Everything from software to hardware
+------------------------------
+Apps are executed on hardware.
+The application software enters the System software block, which turns it into binary format that the hardware can interpret.
+The following are the main components of system software:
+The operating system manages IO activities, allocates memory, and so on.
+Compiler: The output is determined by the instruction set.
+Assembler: binary output
+The instructions of the compiler output will be determined by the chip architecture (RISC-V, x86, etc.): This is an executable file.
+Depending on the language, the input to the compiler follows a standard format.
+We require an HDL (RTL) that implements the specified implementations from assembler to hardware.
+This RTL is synthesised into a netlist of gates, which is then translated into layout.
