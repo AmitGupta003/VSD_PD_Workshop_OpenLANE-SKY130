@@ -76,3 +76,9 @@ The foundry provides companies and individuals with interface files so that they
 
 ![Screenshot 2023-06-02 215355](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/7091679f-6957-4a41-b27b-6bfe97fa53c8)
 
+An Overview of RISC-V
+------------------------------
+Instruction set architecture (ISA) RISC-V
+If a C programme is to be run on a specific layout, it is first compiled into ALP (depending on the architecture) and then transformed into Machine language (binary).
+The RISC-V should be implemented using a specific RTL.
+The entire process begins with RISC-V architecture, then moves on to RTL, and finally to layout.
