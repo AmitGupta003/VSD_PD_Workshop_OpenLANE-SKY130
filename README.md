@@ -130,3 +130,14 @@ Since then, we've seen Pure Play Fabs (businesses that just manufacture) and Fab
 
 The PDK serves as a bridge between the FAB and the designers.
 
+
+Simplified RTL to GDSII flow
+---------------------------------
+Placement of Synthesis
+Power/Floor Planning
+The synthesis of a clock tree
+Routing
+Please sign off. Synthesis is the first key stage in a typical ASIC flow.
+Synthesis is the process of converting RTL to a circuit of components from a standard cell library and then to a gate level netlist.
+In general, the cell layout is surrounded by a fixed height and a variable width that is an integer multiple.
+Each has its own set of views/models, such as layout views, SPICE views, electrical views, and so forth.
