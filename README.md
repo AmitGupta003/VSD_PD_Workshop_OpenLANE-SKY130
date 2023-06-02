@@ -5,8 +5,7 @@ Contents
 ------------------------------------------------------------------------------------------------
 Day 1: Inception of open-source EDA, OpenLANE and Sky130 PDK
 --------------------------------
-•How to talk to computers
-•SoC design and OpenLANE
+•How to talk to computers                                                                   •SoC design and OpenLANE
 •Get familiar to open-source EDA tools
 
 Day 2: Good floorplan vs bad floorplan and introduction to library cells
