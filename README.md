@@ -100,6 +100,13 @@ SoC Design and OpenLANE
 -----------------------------
 Introduction to all components of open-source digital ASIC Design
 ----------------------------------
+![WhatsApp Image 2023-06-02 at 22 16 58](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/827cbd14-9961-4ae8-af4d-db5f7252e5ea)
+
+![WhatsApp Image 2023-06-02 at 22 18 35](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/71841dbd-c288-4144-bc69-d3e4d98e98dd)
+
+![WhatsApp Image 2023-06-02 at 22 20 00](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/0038533c-116b-41d7-a0fb-6d7c8e2b265e)
+
+
 Designing Digital ASICs necessitates a number of factors, including:
 EDA Tools for RTL IPs
 
@@ -143,3 +150,29 @@ Please sign off. Synthesis is the first key stage in a typical ASIC flow.
 Synthesis is the process of converting RTL to a circuit of components from a standard cell library and then to a gate level netlist.
 In general, the cell layout is surrounded by a fixed height and a variable width that is an integer multiple.
 Each has its own set of views/models, such as layout views, SPICE views, electrical views, and so forth.
+
+Floor and power planning 
+-------------------------
+The goal here is to plan the silicon area and achieve the best feasible result.
+
+
+The semiconductor die is partitioned between several system building blocks and I/O pads during chip floor layout.
+The macro dimensions and pin positions are defined in Macro floor planning. The rules and routing tracks are defined in this step.
+
+The power network is built during power planning. A chip is often powered by numerous VDDs and gnds. Upper metal layers are typically employed for decreased resistance.
+The cells are placed on the floor plan during placement. The cells are put as near together as feasible to reduce interconnect time and for future routing purposes.
+Typically, placement is accomplished in two processes.
+Global positioning: Attempts to locate
+
+Before we route the signals, we must route the clock, ensuring that the clock is transmitted to all successive cells with the least amount of skew.
+
+The clock network is typically depicted as a tree with multiple branches (X-tree, H-tree, etc.).
+Following that, signal routing is used to put the networks together. The interconnects are created using the PDK and the metal layers that are accessible.
+
+Skywater pdk contains six layers. 5 layers are made of aluminium.
+Because the routing grid is so large, a divide and conquer strategy is adopted. We have two steps once more.
+Routing at the global level: To produce the route guides
+Routeing details: The actual wiring is implemented using the routing guides.
+As a final note,
+DRC (Design rule check), LVS (makes sure the final netlist matches the gate level schematic) are examples of physical verifications.
+Timing verification through STA(Static timing analysis)
