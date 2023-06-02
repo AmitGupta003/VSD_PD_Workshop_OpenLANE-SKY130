@@ -51,7 +51,18 @@ The chip is generally placed at the centre of the package and wire bonds are usu
 • Pads: Through which signals go through
 • Core: Place at which the digital logic sits
 • Die: The size of the entire chip
-If an example of RISC V SoC is taken, the SoC will look like
 
+
+Foundry IPs are PLLs, SRAMs, and so forth.
+
+A foundry is essentially a large factory with machinery that create silicon chips.
+As a physical design engineer, you must regularly communicate with the foundry.
+The visible digital blocks are known as Macros.
+
+There is a significant distinction between macros and IPs; to put it simply, Macros are fundamental digital blocks, whereas IPs require some level of intellect to design and develop.
+The foundry sends interface files to companies/individuals so that they can communicate with the foundry.
+
+
+If an example of RISC V SoC is taken, the SoC will look like
 ![Screenshot 2023-06-02 215355](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/7091679f-6957-4a41-b27b-6bfe97fa53c8)
 
