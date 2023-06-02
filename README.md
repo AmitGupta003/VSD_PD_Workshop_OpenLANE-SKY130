@@ -51,6 +51,7 @@ The chip is generally placed at the centre of the package and wire bonds are usu
 • Pads: Through which signals go through
 • Core: Place at which the digital logic sits
 • Die: The size of the entire chip
+If an example of RISC V SoC is taken, the SoC will look like
 
 ![Screenshot 2023-06-02 215355](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/7091679f-6957-4a41-b27b-6bfe97fa53c8)
 
