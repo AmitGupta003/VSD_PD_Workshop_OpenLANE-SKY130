@@ -194,3 +194,58 @@ It also includes a vast number of design examples.
 
 Introduction to openLANE detailed ASIC Flow design
 --------------------------
+![image](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-
+SKY130/assets/135353855/80c6eb65-0d3b-42fe-be2e-3c7c652c1457)
+
+openLANE is based on several opensource projects such as:
+OpenROAD
+MAGIC VLSI
+QFlow
+ABC
+KLayout
+Yosys
+Fault
+The Flow starts with RTL synthesis, it is fed to yosys with design constraints, it is converted into logic using components, this circuit can be optimized and mapped into library using abc
+ABC needs to be guided during this process
+this guidance comes in the form of ABC strategies: synthesis strategies are used to find the best strategy to continue with
+openLANE has design exploration which can be used to sweep the design exploarations and it generates the number of violations generated, this is useful to find the best configurations
+openLANE regression testing is used to test among the best known designs and to compare among the best results
+After synthesis, we have DFT:
+Scan insertion
+Automatic test pattern generation
+Test patterns compaction
+Fault coverage
+Fault simulation
+Next comes the physical implementation which involves several steps, this is done by the openROAD App,Automated power place and route (PnR)
+Floor/ Power planning
+End decoupling capacitors and tap cells insertion
+Placement: Global and detailed
+Post placement optimization
+Clock Tree synthesis
+Routing: Global and detailed
+Logic equivalance checking can be done using yosys
+Every time the netlist is modified, verification needs to be done
+During physical implementation, antenna rules violations should be addressed
+when a wire segment is fabricated, if it is long enough, it can act as antenna, so the length of transistors is reduced
+It has 2 solutions:
+Bridging: attaches a higher level intermediary 
+![image](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/1d2c32a1-ed1c-42a0-80dd-e414e36730c5)
+
+![image](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/32193c65-e879-4aa5-8c83-d41480a561c0)
+
+The other solution is to create another antenna diode 
+With OpenLANE, a preventive approach has been taken
+
+a fake antenna diode is created next to every cell input after placement
+This cell is not a real diode but matches the footprint of the library being used
+If the checker reports a violation on cell input pin, replace the fake diode by a real one 
+![image](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/5ac02507-9b58-4b7f-a28a-30ea4682dae9)
+
+One of these 2 approaches can be used in openLANE
+
+Signoff in openLANE STA is done by openSTA
+
+physical signoff includes DRC and LVS
+Magic is used for DRC and spice extraction from layout
+Magic and Netgen are used for LVS
+extracted spice by magic vs verilog netlist
