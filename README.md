@@ -39,4 +39,18 @@ Day-1
 -------------------------------------------
 How to talk to computers
 -------------------------------
-Introduction to QFN-48 Package, chip, pads, core, die and IPs
+Introduction to the QFN-48 package, chip, pads, core, die, and IPs
+
+Take, for example, an Arduino board. The entire board can be defined in terms of a block diagram, including processor, SD RAM chip, VCC, and so on blocks associated with it. There will be numerous pins available on the chip. This chip, as it is commonly known, should be referred to as a package with numerous pins. The course's specific package is QFN-48.
+![Screenshot 2023-06-02 215346](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/12b8a453-98cb-4ecb-9071-96ee5b586bc0)
+
+![image](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/f3f3059d-c34c-43aa-81ea-5a6db7a109f1)
+
+The chip is generally placed at the centre of the package and wire bonds are usually used to connect them to the package pins
+•The chip will have various components:
+• Pads: Through which signals go through
+• Core: Place at which the digital logic sits
+• Die: The size of the entire chip
+
+![Screenshot 2023-06-02 215355](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/7091679f-6957-4a41-b27b-6bfe97fa53c8)
+
