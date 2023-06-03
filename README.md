@@ -174,3 +174,15 @@ less config.tcl
 results in the below image
 
 ![WhatsApp Image 2023-06-03 at 13 18 35](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/bd11d407-2d19-4485-bbbe-6e76ce05a296)
+
+
+config.tcl will have the highest priority
+
+Before running synthesis, we need to prepare the datastructure and the file system Upon running the command,
+
+```bash
+prep -design picorv32a
+```
+The 2 LEFS are merged, techlef and lef files.
+
+![WhatsApp Image 2023-06-03 at 13 18 35](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/5dbc4f8f-4893-487f-a193-af240fbcd21a)
