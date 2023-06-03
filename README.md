@@ -39,6 +39,11 @@ This repository contains the workshop's documentation for advanced physical desi
 Introduction to the QFN-48 package, chip, pads, core, die, and IPs
 
 Take, for example, an Arduino board. The entire board can be defined in terms of a block diagram, including processor, SD RAM chip, VCC, and so on blocks associated with it. There will be numerous pins available on the chip. This chip, as it is commonly known, should be referred to as a package with numerous pins. The course's specific package is QFN-48.
+![Screenshot 2023-06-03 120520](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/2e1e2b75-8fbc-46b0-89b1-1c6ad1d628c7)
+
+
+![image](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/832701ff-c622-4646-941c-849055ad36b8)
+
 
 
 - The chip is generally placed at the centre of the package and wire bonds are usually used to connect them to the package pins 
@@ -58,7 +63,11 @@ The visible digital blocks are known as Macros.
 
 - There is a significant distinction between macros and IPs; to put it simply, Macros are fundamental digital blocks, whereas IPs require some level of intellect to design and develop. The foundry sends interface files to companies/individuals so that they can communicate with the foundry.
 
-- If an example of RISC V SoC is taken, the SoC will look like Foundry IPs are the PLL, SRAM, and other components.
+- If an example of RISC V SoC is taken, 
+![image](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/4658e9d9-5f60-4dd9-aaa1-6c86b87661f3)
+
+
+- The PLL, SRAM, etc are called foundry IPs,
 
 - A foundry is essentially a sizable factory with equipment for producing silicon chips. One must regularly communicate with the foundry as a physical design engineer.
 
@@ -90,6 +99,9 @@ The visible digital blocks are known as Macros.
 ## SoC Design and OpenLANE
 
 #### Introduction to all components of open-source digital ASIC Design
+![WhatsApp Image 2023-06-02 at 22 16 56](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/add90990-bfb9-4242-83b4-2565caefd8b3)
+
+![WhatsApp Image 2023-06-02 at 22 18 33](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/06350df8-0297-4875-af79-ec18ff9ac9d6)
 
 - Designing Digital ASICs necessitates a number of factors, including: 
    - EDA Tools
@@ -126,6 +138,8 @@ The visible digital blocks are known as Macros.
 
 ## Simplified RTL to GDSII flow
 
+![WhatsApp Image 2023-06-02 at 22 19 58](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/a2dd8204-757d-4851-a2a3-08acedc09d1e)
+
 - Synthesis
 - Power/floor planning
 - placement
@@ -159,6 +173,8 @@ For signoff
 
 ## Introduction to openLane and STRIVE chipsets
 
+![WhatsApp Image 2023-06-02 at 22 23 51](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/31478be8-f716-4b9e-9205-4cf850871bd4)
+
 When using openSource EDA tools, the task becomes a bit complicated
 
 - OpenLANE is open source and free
@@ -175,6 +191,8 @@ When using openSource EDA tools, the task becomes a bit complicated
 - It also comes with a large number of design examples
 
 ## Introduction to openLANE detailed ASIC Flow design
+
+![image](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/d762be3f-6d3c-46ab-9434-d6aa9d64d999)
 
 - openLANE is based on several opensource projects such as:
   - OpenROAD
@@ -209,16 +227,20 @@ When using openSource EDA tools, the task becomes a bit complicated
 - During physical implementation, antenna rules violations should be addressed
 - when a wire segment is fabricated, if it is long enough, it can act as antenna, so the length of transistors is reduced
 - It has 2 solutions:
-  - Bridging: attaches a higher level intermediary
+  - Bridging: attaches a higher level intermediary ![image](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/f3841bac-8761-4797-9050-f929d6c1f6f1)
 
 
-  - The other solution is to create another antenna diode
+
+  - The other solution is to create another antenna diode ![image](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/0e4d1668-925f-44dd-aa64-405801e80c02)
+
 
 With OpenLANE, a preventive approach has been taken
 
 - a fake antenna diode is created next to every cell input after placement
 - This cell is not a real diode but matches the footprint of the library being used
 - If the checker reports a violation on cell input pin, replace the fake diode by a real one
+
+![image](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/73dd2c6c-00e5-4c1a-957e-2b165161768b)
 
 One of these 2 approaches can be used in openLANE
 
