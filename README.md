@@ -55,9 +55,11 @@ Apps are executed on hardware. The application software enters the System softwa
 
 ### SoC Design and OpenLANE
 Introduction to all components of open-source digital ASIC Design
-![WhatsApp Image 2023-06-02 at 22 16 56](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/44e7aa6d-dcd3-4328-85af-a80cce4e9d45)
 
 ![Screenshot 2023-06-03 123056](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/e7a61480-a9e0-47c0-95d6-a16d50b7dd2c)
+
+
+![WhatsApp Image 2023-06-02 at 22 18 33](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/c798fa69-3593-48ef-b792-b88f7a0ee896)
 
 Designing Digital ASICs necessitates a number of factors, including: EDA Tools for RTL IPs
 
