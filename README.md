@@ -58,7 +58,7 @@ Introduction to all components of open-source digital ASIC Design
 ![Screenshot 2023-06-03 123056](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/e7a61480-a9e0-47c0-95d6-a16d50b7dd2c)
 
 
-![WhatsApp Image 2023-06-02 at 22 18 33](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/c798fa69-3593-48ef-b792-b88f7a0ee896)
+![Screenshot 2023-06-03 123410](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/1edf1d49-a14b-41cf-ad8d-121c31d565ce)
 
 Designing Digital ASICs necessitates a number of factors, including: EDA Tools for RTL IPs
 
