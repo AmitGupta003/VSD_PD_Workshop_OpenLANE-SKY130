@@ -185,4 +185,4 @@ prep -design picorv32a
 ```
 The 2 LEFS are merged, techlef and lef files.
 
-![WhatsApp Image 2023-06-03 at 13 18 35](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/5dbc4f8f-4893-487f-a193-af240fbcd21a)
+![WhatsApp Image 2023-06-03 at 13 23 25](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/3b1827c7-903e-40f2-b37d-bb707a913478)
