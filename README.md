@@ -57,8 +57,7 @@ Apps are executed on hardware. The application software enters the System softwa
 Introduction to all components of open-source digital ASIC Design
 ![WhatsApp Image 2023-06-02 at 22 16 56](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/44e7aa6d-dcd3-4328-85af-a80cce4e9d45)
 
-![Screenshot 2023-06-03 122654](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/e0df8b06-7a4a-435a-9d4e-08a31644a106)
-
+![Screenshot 2023-06-03 123056](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/e7a61480-a9e0-47c0-95d6-a16d50b7dd2c)
 
 Designing Digital ASICs necessitates a number of factors, including: EDA Tools for RTL IPs
 
