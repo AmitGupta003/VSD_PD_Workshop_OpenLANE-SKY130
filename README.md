@@ -128,7 +128,8 @@ Signoff in openLANE STA is done by openSTA
 physical signoff includes DRC and LVS Magic is used for DRC and spice extraction from layout Magic and Netgen are used for LVS extracted spice by magic vs verilog netlist
 
 
-## WORKING DIRECTORY
+## Getting started with Labs
+
 #### OpenLANE directory structure
 
 To deploy this project run
@@ -154,7 +155,11 @@ hd: A PDK variation, hd stands for high density. We may see several files connec
 
 
 Design preparation steps
-docker
 ```bash
+docker
 ./flow.tcl -interactive
 ```
+runs the script in interactive mode; without the interactive command, it will run from RTL to GDSII entirely. Running the docker command and executing the tcl script as described opens the container.
+
+![WhatsApp Image 2023-06-03 at 13 10 00](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/15cb4733-62d8-4e7b-9ec7-4488e0d7f76b)
+
