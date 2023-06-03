@@ -200,7 +200,10 @@ runs the synthesis
 To find the FLOP RATIO i.e, number of D-Flip Flops:
 
 Number of cells: 14876
+
 Number of D FF: 1613
+
 Flop count (Number of D-FF/ Number of cells) : 0.1084
+
 Flop count percentage: 10.84
 
