@@ -143,13 +143,15 @@ The contents are:
 
 Under sky130A, libs.tech contains files specific to the tool Under libs.ref and libs.tech, we have
 
-![WhatsApp Image 2023-06-03 at 13 02 33](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/a7631c22-306e-4bec-9f39-c45ea9cf3b8a)
-
 sky130_fd_sc_hd denotes
 
 fd: foundry name, for example, OSU is for Oklahoma State University
 sc: normal cell
 hd: A PDK variation, hd stands for high density. We may see several files connected with that folder inside the directory.
+
+![WhatsApp Image 2023-06-03 at 13 02 33](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/a7631c22-306e-4bec-9f39-c45ea9cf3b8a)
+
+
 
 Design preparation steps
 docker
