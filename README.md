@@ -186,3 +186,14 @@ prep -design picorv32a
 The 2 LEFS are merged, techlef and lef files.
 
 ![WhatsApp Image 2023-06-03 at 13 23 25](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/3b1827c7-903e-40f2-b37d-bb707a913478)
+
+A runs directory is created beneath the picorv32a folder, which contains all of the required files.
+
+The LEF file contained within this directory will have all of the cell, layer, and other information, whereas the results folder will contain separate folders for each phase. The config.tcl file basically shows all of the default parameters used by the run cmds.log file records all of the commands.
+```bash
+run_synthesis
+```
+
+runs the synthesis
+
+![WhatsApp Image 2023-06-03 at 13 23 25](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/0f33067a-b0c6-4d1a-a62f-9addf01afc95)
