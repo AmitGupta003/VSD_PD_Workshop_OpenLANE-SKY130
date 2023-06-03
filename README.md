@@ -163,3 +163,14 @@ runs the script in interactive mode; without the interactive command, it will ru
 
 ![WhatsApp Image 2023-06-03 at 13 10 00](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/15cb4733-62d8-4e7b-9ec7-4488e0d7f76b)
 
+The designs folder contains all of the designs that are being run by openlane. First, we will work on picorv32a. It will include three files,
+
+src file: RTL will be present, and sdc file config.tcl - bypasses any configurations already done in openLANE, i.e. many switches already have a default value. The default values are depicted in the graphic below.
+
+```bash
+less config.tcl
+```
+
+results in the below image
+
+![WhatsApp Image 2023-06-03 at 13 18 35](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/bd11d407-2d19-4485-bbbe-6e76ce05a296)
