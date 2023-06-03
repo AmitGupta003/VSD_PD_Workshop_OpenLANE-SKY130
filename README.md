@@ -197,3 +197,10 @@ run_synthesis
 runs the synthesis
 
 ![WhatsApp Image 2023-06-03 at 13 23 25](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/0f33067a-b0c6-4d1a-a62f-9addf01afc95)
+To find the FLOP RATIO i.e, number of D-Flip Flops:
+
+Number of cells: 14876
+Number of D FF: 1613
+Flop count (Number of D-FF/ Number of cells) : 0.1084
+Flop count percentage: 10.84
+
