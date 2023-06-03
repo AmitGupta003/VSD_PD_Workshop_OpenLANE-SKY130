@@ -126,3 +126,33 @@ One of these 2 approaches can be used in openLANE
 Signoff in openLANE STA is done by openSTA
 
 physical signoff includes DRC and LVS Magic is used for DRC and spice extraction from layout Magic and Netgen are used for LVS extracted spice by magic vs verilog netlist
+
+
+## WORKING DIRECTORY
+#### OpenLANE directory structure
+
+To deploy this project run
+
+```bash
+~/Desktop/work/tools/openlane_working_dir/openlane
+```
+
+The contents are:
+
+![WhatsApp Image 2023-06-03 at 12 54 16](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/d8d02f1b-1eab-4b1e-9bcc-327f9c1476a3)
+
+Under sky130A, libs.tech contains files specific to the tool Under libs.ref and libs.tech, we have
+
+![WhatsApp Image 2023-06-03 at 13 02 33](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/a7631c22-306e-4bec-9f39-c45ea9cf3b8a)
+
+sky130_fd_sc_hd denotes
+
+fd: foundry name, for example, OSU is for Oklahoma State University
+sc: normal cell
+hd: A PDK variation, hd stands for high density. We may see several files connected with that folder inside the directory.
+
+Design preparation steps
+docker
+```bash
+./flow.tcl -interactive
+```
