@@ -44,8 +44,7 @@ The macros are the visible digital blocks.
 
 Between macros and IPs, there is a key difference that can be easily understood by saying that IPs take some level of intellect to generate, whereas macros are fundamental digital building blocks. The foundry provides companies and individuals with interface files so that they can communicate with the foundry.
 
-![image](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/8639b3dd-8c8e-4a60-b46b-723a6fc2e654)
-
+![image](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/5c8d2a26-7624-4457-b063-4a8d118b379a)
 
 ### Introduction to RISC-V
 Instruction set architecture (ISA) RISC-V If a C programme is to be run on a specific layout, it is first compiled into ALP (depending on the architecture) and then transformed into Machine language (binary). The RISC-V should be implemented using a specific RTL. The entire process begins with RISC-V architecture, then moves on to RTL, and finally to layout.
