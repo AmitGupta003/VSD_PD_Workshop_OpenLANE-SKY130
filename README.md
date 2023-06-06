@@ -634,7 +634,8 @@ met2            310596          2959            0.95%             0 /  0 /  0
 met3            207064             0            0.00%             0 /  0 /  0
 met4            123148             0            0.00%             0 /  0 /  0
 met5             41184             0            0.00%             0 /  0 /  0
-Total          1056757          5544            0.52%             0 /  0 /  0`
+Total          1056757          5544            0.52%             0 /  0 /  0
+`
 
 ## Final Layout:
 `magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/05-06_08-09/results/magic/picorv32a.mag`
