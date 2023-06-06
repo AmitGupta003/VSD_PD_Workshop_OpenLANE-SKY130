@@ -513,7 +513,8 @@ run
 .end
 
 3.Open the spice file by typing ngspice sky130A_inv.spice. And Generate a graph using plot y vs time a :
-`Circuit:** spice3 file created from sky130_inv.ext - technology: 
+```bash
+Circuit:** spice3 file created from sky130_inv.ext - technology: 
 
 Scale set
 Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
@@ -537,7 +538,7 @@ Reference value: 0.00000e+00
 No. of Data Rows: 160
 ngspice 1 -> plot y vs time a 
 ngspice 1 ->
-`
+```
 ![WhatsApp Image 2023-06-04 at 01 48 55](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/dd48c263-1b47-42d2-bd49-2cc675820d12)
 
 ![WhatsApp Image 2023-06-04 at 02 16 50](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/ef96acde-aacf-41b8-9e30-850a3977941d)
@@ -562,10 +563,12 @@ We can establish two crucial properties of the cell by analysing the rising tran
 ![WhatsApp Image 2023-06-04 at 02 44 19](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/ebd7594d-7d36-475d-9b68-e19e6c58b19f)
 
 
-`rise time = 2.2046ns-2.1686ns=36ps
+```bash
+rise time = 2.2046ns-2.1686ns=36ps
 fall time = 4.06659ns- 4.03954=26ps
 cell rise delay = 2.186ns-2.150ns= 36ps
-cell fall delay= 4.05326ns-4.050ns = 3.26ps`
+cell fall delay= 4.05326ns-4.050ns = 3.26ps
+```
 
 
 #### Routing Stage: 
@@ -595,7 +598,8 @@ Signal short = this can be solved my moving the route to next layer using vias. 
 
 Command used : `run_routing`
 
-`Routing resources analysis :
+```bash
+Routing resources analysis :
 
 Routing resources analysis :===============================
 [INFO GRT-0053] Routing resources analysis:
@@ -608,9 +612,10 @@ met2       Vertical       311040        310596          0.14%
 met3       Horizontal     207360        207064          0.14%
 met4       Vertical       124416        123148          1.02%
 met5       Horizontal      41472         41184          0.69%
+```
 
-`
-`Final usage/overflow report: 
+```bash
+Final usage/overflow report: 
 
 [Overflow Report] Total Usage   : 118927
 [Overflow Report] Total Capacity: 374321
@@ -623,9 +628,11 @@ met5       Horizontal      41472         41184          0.69%
 
 [INFO] Final usage          : 118927
 [INFO] Final number of vias : 70454
-[INFO] Final usage 3D       : 330289`
+[INFO] Final usage 3D       : 330289
+```
 
-`Final Congestion report :
+```bash
+Final Congestion report :
 INFO GRT-0096] Final congestion report:
 Layer         Resource        Demand        Usage (%)    Max H / Max V / Total Overflow
 li1               4004             0            0.00%             0 /  0 /  0
@@ -635,10 +642,12 @@ met3            207064             0            0.00%             0 /  0 /  0
 met4            123148             0            0.00%             0 /  0 /  0
 met5             41184             0            0.00%             0 /  0 /  0
 Total          1056757          5544            0.52%             0 /  0 /  0
-`
+```
 
 ## Final Layout:
-`magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/05-06_08-09/results/magic/picorv32a.mag`
+```bash
+magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/05-06_08-09/results/magic/picorv32a.mag
+```
 
 ![image](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/611f25bf-f9b6-4bb2-b807-201caca2e202)
 
@@ -684,20 +693,24 @@ Middle click on empty area will turn the box into empty (similar to erasing it)
 :drc why = show DRC violation and also the DRC name which can be referenced from Sky130 PDK Periphery Rules.
 
 Open the def file via magic with no DRC errors:
-`magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/openlane/designs/05-06_08-09/runs/picorv32a/results/magic/picorv21a.gds`
-![image](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/b34b380d-de42-4bfd-a7be-d52fe9770929)
+```bash
+magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/openlane/designs/05-06_08-09/runs/picorv32a/results/magic/picorv21a.gds
+```
 
-`
+```bash
 DESIGN picorv32a ;
 UNITS DISTANCE MICRONS 1000 ;
 DIEAREA ( 0 0 ) ( 1000 1000 ) ;
-`
+```
 The die area here is in database units and 1 micron is equivalent to 1000 database units. ** Thus area of the die is (1000/1000)microns*(1000/1000)microns = 1 microns squared.**
 
 ### Summary in OpenLANE:
-`/home/vsduser/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/05-06_08-09/reports/manufacturability_report.rpt`
+```bash
+/home/vsduser/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/05-06_08-09/reports/manufacturability_report.rpt
+```
 
-`Design Name: picorv32a
+```bash 
+Design Name: picorv32a
 [INFO]: Calculating Runtime From the Start...
 [INFO]: Flow completed for picorv32a/05-06_08-09 in 1h36m44s
 [INFO]: Generating Final Summary Report...
@@ -720,7 +733,8 @@ Antenna Summary:
 Source: /openLANE_flow/designs/picorv32a/runs/05-06_08-09/reports/routing//44-antenna.rpt
 Number of pins violated: 19
 Number of nets violated: 16
-[SUCCESS]: Flow Completed Without Fatal Errors.`
+[SUCCESS]: Flow Completed Without Fatal Errors.
+```
 
 To ensure proper signal timing and avoid any issues, we need to perform certain steps in the IC design process. One important step is to run post-routing Static Timing Analysis (STA) using the run_parasitics_sta command.
 
