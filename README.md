@@ -352,7 +352,8 @@ FP_CORE_HMETAL - horizontal metal layer
 
 - Constrains added in the config.tcl for the simulation.
 set ::env(FP_CORE_UTIL) "80"
-```bash set ::env(PL_TARGET_DENSITY) "0.2"
+```bash 
+set ::env(PL_TARGET_DENSITY) "0.2"
 set ::env(PL_BASIC_PLACEMENT) "0"
 set ::env(GLB_RESIZER_TIMING_OPTIMIZATIONS) "0"
 set ::env(FP_SIZING) "absolute"
@@ -383,15 +384,19 @@ The command to run floorplan is
 ```run_floorplan```
 
 - To view floor plan layout in magic
-`magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.placement.def`
+``` bash
+magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.placement.def
+```
 
 ![WhatsApp Image 2023-06-03 at 17 44 12](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/91e33706-0e82-4c39-9b31-0ad876c2e92b)
 
 The following are the design's utilisation factor and aspect ratio:
 
- `(Area occupied by netlist)/(total Area of the core) = Utilisation Factor`
+```bash 
+(Area occupied by netlist)/(total Area of the core) = Utilisation Factor
 
-`(height/width) equals Aspect Ratio`
+(height/width) equals Aspect Ratio
+```
 
 A Utilisation Factor of 1 denotes complete utilisation, with no room for routing or further logic. However, in practise, the Utilisation Factor will typically be 0.5-0.6, indicating that 50 to 60% of the area is used for macros, standard cells, and the remainder is used for routing and extralogic. Similarly, an Aspect ratio of 1 indicates that the chip is square in shape. Rectangular chip is represented by any value other than 1.
 
@@ -408,21 +413,21 @@ The purpose of placement is still congestion rather than timing. Furthermore, ty
 
 `%run_placement` is the placement. This command is a wrapper that does global placement (through the RePlace tool), optimisation (by the Resier tool), and detailed placement (via the OpenDP tool). It shows hundreds of iterations of HPWL and OVFL. If the overflow decreases, the algorithm is considered to be converging. It also verifies legality.
 
-`magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.floorplan.def &`
+```magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.floorplan.def &```
 
 ![WhatsApp Image 2023-06-03 at 18 01 19](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/25e0a32e-bdf2-4fd1-866a-9fcd7ff2845f)
 
 ![WhatsApp Image 2023-06-03 at 22 54 47](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/1ba7f927-f823-4b4f-bf1d-dc8b3ed88f95)
 
-`Placement Analysis
---------------------------------
+```bash
+Placement Analysis
 total displacement        0.0 u
 average displacement      0.0 u
 max displacement          0.0 u
 original HPWL        766080.0 u
 legalized HPWL       779196.5 u
 delta HPWL                  2 %
-`
+```
 
 Placement is done on two stages:
 
@@ -451,7 +456,9 @@ Open your terminal or command prompt.
 
 Run the following command to clone the files from the GitHub repository:
 
-`git clone https://github.com/nickson-jose/vsdstdcelldesign.git`
+```bash 
+git clone https://github.com/nickson-jose/vsdstdcelldesign.git
+```
 
 The layout details of an inverter can be found in the sky130_inv.mag file.
 The file contains information about the physical arrangement of the inverter components on the chip.
