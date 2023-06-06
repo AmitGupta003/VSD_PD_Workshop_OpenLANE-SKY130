@@ -451,7 +451,7 @@ Open your terminal or command prompt.
 
 Run the following command to clone the files from the GitHub repository:
 
-git clone https://github.com/nickson-jose/vsdstdcelldesign.git
+`git clone https://github.com/nickson-jose/vsdstdcelldesign.git`
 
 The layout details of an inverter can be found in the sky130_inv.mag file.
 The file contains information about the physical arrangement of the inverter components on the chip.
@@ -513,7 +513,7 @@ run
 .end
 
 3.Open the spice file by typing ngspice sky130A_inv.spice. And Generate a graph using plot y vs time a :
-Circuit:** spice3 file created from sky130_inv.ext - technology: 
+`Circuit:** spice3 file created from sky130_inv.ext - technology: 
 
 Scale set
 Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
@@ -521,7 +521,7 @@ Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
 Warning: va: no DC value, transient time 0 value used
 
 Initial Transient Solution
---------------------------
+
 Node                                                Voltage
 ----                                                -------
 y                                                       3.3
@@ -537,7 +537,53 @@ Reference value: 0.00000e+00
 No. of Data Rows: 160
 ngspice 1 -> plot y vs time a 
 ngspice 1 ->
-
+`
 ![WhatsApp Image 2023-06-04 at 01 48 55](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/dd48c263-1b47-42d2-bd49-2cc675820d12)
 
 ![WhatsApp Image 2023-06-04 at 02 16 50](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/ef96acde-aacf-41b8-9e30-850a3977941d)
+
+The transient response of the circuit will be examined to analyse the cell's slew rate and propagation delay. We shall concentrate on the rising transition in particular. We can learn about the cell's performance characteristics by examining this transition.
+
+The rise transition is an important characteristic that tells us how quickly the output signal can move from a low to a high voltage level. It is calculated by determining how long it takes the output to transition between the set voltage thresholds.
+
+We can establish two crucial properties of the cell by analysing the rising transition:
+
+- The slew rate describes how quickly the output voltage varies over time during the rising transition. It is calculated by dividing the voltage difference (2.64V - 0.66V) by the transition duration. A faster transition means a more efficient and sensitive cell, hence a higher slew rate.
+
+- Propagation Delay: The propagation delay is the time it takes for the output signal to travel from the cell's input to its output during the rising transition. It is calculated by subtracting the input delay from the entire rising transition time. The propagation delay reveals information about the cell's speed and responsiveness.
+
+- Rise Transition output transition time: 
+  2.25421 - 2.18636 = 0.006785 ns / 67.85ps
+
+- Fall Transition output transition time:
+Tr_f = 4.09605 - 4.05554 = 0.04051ns/40.51ps
+
+- Cell Rise Delay of output:
+D_r = 2.21701 - 2.14989 = 0.06689ns/66.89ps 
+
+- Cell Fall Delay  of output:
+D_f = 4.07816 - 4.05011 = 0.02805ns/28.05ps
+
+#### Routing Stage: 
+Maze Routing or Lee's Routing is a basic routing algorithm:
+
+The shortest path is one that continues to increase by one (1-to-9 in the example below). There may be numerous paths like this, but the tool will select the one with the fewest bends. The path should not be diagonal and should not cross over an impediment such as macros.
+This algorithm, on the other hand, has a long run time and consumes a lot of memory, therefore a more optimised routing algorithm is preferable (but the principles remain the same, where the route with the shortest path and fewest bends is chosen).
+
+#### DRC Cleaning: 
+DRC cleaning is the next step after routing. DRC cleaning is done to ensure the routes can be fabricated and printed in silicon faithfully. Most DRC is due to the constraints of the photolitographic machine for chip fabrication where the wavelength of light used is limited. There are thousands of DRC and some DRC are:
+
+#### Minimum wire width
+Minimum wire pitch (center to center spacing)
+Minimum wire spacing (edge to edge spacing)
+Signal short = this can be solved my moving the route to next layer using vias. This results in more DRC (Via width, Via Spacing, etc.). Higher metal layer must be wider than lower metal layer and this is another DRC.
+
+
+##### OpenLane routing stage consists of two stages:
+
+- Global Routing - Create routing guides that can route across all networks. FastRoute Routing was employed.
+- Detailed Routing -which uses the global routing guide to link the pins with the least amount of wire and bends. TritonRoute is the tool utilised.
+
+#### Triton Route
+Performs detailed routing and honours pre-processed route guides (created by global route) and employs MILP-based (Mixed Integer Linear Programming algorithm) panel routing scheme (uses panel as the grid guide for routing) with intra-layer parallel routing (routing occurs simultaneously in a single layer) and inter-layer sequential layer (routing occurs sequentially and not simultaneously).
+Respects a layer's desired direction. To prevent overlapping wires between layers and potential capacitance that can damage the signal, the metal layer direction is alternating (metal layer direction is set in the LEF file, e.g. met1 Horizontal, met2 Vertical, etc.).
