@@ -308,9 +308,6 @@ Printing statistics.
 ![WhatsApp Image 2023-06-03 at 17 06 17](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/d291add5-48bd-441b-8ae9-9e26cb77caea)
 
 ## Floorplan Stage:
-### Review floor plan layout in magic
-
-![WhatsApp Image 2023-06-03 at 17 33 38](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/0b730ddc-0937-4c5e-a251-b622480d92e4)
 
 ```bash
 % run floor_plan
@@ -365,7 +362,182 @@ set ::env(CORE_AREA) "5.25 10.88 900.00 900.00"
 set ::env(DIODE_INSERTION_STRATEGY) "4"
 set ::env(GLB_RT_MAXLAYER) "5"
 
-set ::env(VDD_NETS) [list {vccd1}]```
-
+set ::env(VDD_NETS) [list {vccd1}]
 
 set ::env(GND_NETS) [list {vssd1}]
+```
+
+### Review floor plan layout in magic
+
+![WhatsApp Image 2023-06-03 at 17 33 38](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/0b730ddc-0937-4c5e-a251-b622480d92e4)
+
+Move onto an object and press s, open the tkcon window and type what, it will show the layer
+
+![WhatsApp Image 2023-06-03 at 17 34 17](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/197d0ccf-90ce-49f8-9302-7c6826c21f65)
+
+
+### Run floorplan on OpenLane:
+
+The command to run floorplan is
+
+```run_floorplan```
+
+- To view floor plan layout in magic
+`magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.placement.def`
+
+![WhatsApp Image 2023-06-03 at 17 44 12](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/91e33706-0e82-4c39-9b31-0ad876c2e92b)
+
+The following are the design's utilisation factor and aspect ratio:
+
+ `(Area occupied by netlist)/(total Area of the core) = Utilisation Factor`
+
+`(height/width) equals Aspect Ratio`
+
+A Utilisation Factor of 1 denotes complete utilisation, with no room for routing or further logic. However, in practise, the Utilisation Factor will typically be 0.5-0.6, indicating that 50 to 60% of the area is used for macros, standard cells, and the remainder is used for routing and extralogic. Similarly, an Aspect ratio of 1 indicates that the chip is square in shape. Rectangular chip is represented by any value other than 1.
+
+### Placement Stage:
+1. Bind the netlist to a real-world physical cell. The physical cell will be drawn from a library with many alternatives for shape, dimension, and delay for the same cell.
+
+2.Next is placement of those physical cells to the floorplan.
+
+3.Maintain signal integrity by optimising location. This is where we estimate wirelength and capacitance (C=EA/d) and put repeaters/buffers based on that. The wirelength will generate a resistance, causing an unwanted voltage drop, and a capacitance, causing a slew rate that may be insufficient for fast current switching of logic gates. To reduce resistance and capacitance, include buffers for lengthy lines that act as intermediaries, separating a single long wire into multiple ones. If it has to run at a high frequency (2GHz), we sometimes perform arrangements where logic cells are put very close to one other (virtually zero latency). Because we can employ independent metal layers, crisscrossing of paths is a normal circumstance for PnR.
+
+4. After placement optimization, We will setup timing analysis using idle clock (zero delay for wires and has no clock buffer related delays) considering we have not yet done CTS.
+
+The purpose of placement is still congestion rather than timing. Furthermore, typical cells are not placed on the layout stage, but rather on the Placement stage. Macros, also known as preplaced cells, are the cells that are placed on the floorplan stage.On the floorplan stage, macros or preplaced cells are placed.
+
+`%run_placement` is the placement. This command is a wrapper that does global placement (through the RePlace tool), optimisation (by the Resier tool), and detailed placement (via the OpenDP tool). It shows hundreds of iterations of HPWL and OVFL. If the overflow decreases, the algorithm is considered to be converging. It also verifies legality.
+
+`magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.floorplan.def &`
+
+![WhatsApp Image 2023-06-03 at 18 01 19](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/25e0a32e-bdf2-4fd1-866a-9fcd7ff2845f)
+
+![WhatsApp Image 2023-06-03 at 22 54 47](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/1ba7f927-f823-4b4f-bf1d-dc8b3ed88f95)
+
+`Placement Analysis
+--------------------------------
+total displacement        0.0 u
+average displacement      0.0 u
+max displacement          0.0 u
+original HPWL        766080.0 u
+legalized HPWL       779196.5 u
+delta HPWL                  2 %
+`
+
+Placement is done on two stages:
+
+Global Placement = placement with no legalizations and goal is to reduce wirelength. It uses Half Perimeter Wirelength (HPWL) reduction model.
+Detailed Placement = placement with legalization where the standard cells are placed on stadard rows, abutted, and must have no overlaps
+
+![WhatsApp Image 2023-06-03 at 23 07 25](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/4a14a00f-a170-44a8-ac87-e3dd31ad63e5)
+
+![WhatsApp Image 2023-06-03 at 23 09 00](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/6a069b12-5298-4534-8fe3-c2145f4af098)
+
+![WhatsApp Image 2023-06-03 at 23 10 48](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/f93dd124-4e06-4ea0-9fb8-ac3b1ebaf242)
+
+### CTS Command Script:
+After extracting the modified verilog netlist after doing timing ECO, run_floorplan and run_placement and then run_cts. In CTS, the verilog netlist is modified to add the clock buffers and this new verilog netlist is saved under /runs/[date]/results/cts/.
+
+run_cts and the other OpenLane commands are actually just calling the tcl proc (procedure) inside /OpenLane/scripts/tcl_commands/. This tcl procedure will then call OpenROAD to run the actual tool. For example, run_cts can be found inside /OpenLane/scripts/tcl_commands/cts.tcl, this tcl procedure will call OpenROAD and will call /OpenLane/scripts/openroad/cts.tcl which contains the OpenROAD commands to run TritonCTS.
+
+Inside the /OpenLane/scripts/openroad/cts.tcl contains the configuration variables for CTS. Notables ones are:
+
+CTS_CLK_BUFFER_LIST = list of clock branch buffers (sky130_fd_sc_hd__clkbuf_8 sky130_fd_sc_hd__clkbuf_4 sky130_fd_sc_hd__clkbuf_2)
+CTS_ROOT_BUFFER = clock buffer used for the root of the clock tree and is the biggest clock buffer to drive the clock tree of the whole chip (sky130_fd_sc_hd__clkbuf_16)
+CTS_MAX_CAP = maximum capacitance of the output port of the root clock buffer.
+To clone the necessary mag files and spice models for the inverter, PMOS, and NMOS in the Sky130 process, follow these steps:
+
+Open your terminal or command prompt.
+
+Run the following command to clone the files from the GitHub repository:
+
+git clone https://github.com/nickson-jose/vsdstdcelldesign.git
+
+The layout details of an inverter can be found in the sky130_inv.mag file.
+The file contains information about the physical arrangement of the inverter components on the chip.
+The inverter layout is important for understanding how the inverter is designed and how its components are connected.
+To access the file and view the layout information, navigate to the sky130_inv.mag file in the repository.
+The layout information provided in the file helps in understanding the spatial organization of the inverter's transistors, metal interconnects, and other elements.
+By examining the inverter layout, one can gain insights into the physical implementation of the circuit and its interconnections.
+Understanding the inverter layout is crucial for analyzing its performance, identifying potential issues, and making improvements if necessary.
+To make use of the information in the sky130_inv.mag file, open it in a layout viewing tool compatible with the file format.
+The file provides a visual representation of the inverter layout, enabling designers to examine the physical structure and connectivity of the components.
+By studying the inverter layout, designers can gain a deeper understanding of its physical characteristics, aiding in the overall design process.
+For layout we run magic command
+
+magic -T sky130A.tech sky130_inv.mag &
+
+![WhatsApp Image 2023-06-03 at 23 12 16](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/5e2a0fa6-6019-4c0a-aa36-05e324fdc02b)
+
+![WhatsApp Image 2023-06-03 at 23 15 29](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/480d2449-c3ae-4970-a156-ce8007509c55)
+
+![WhatsApp Image 2023-06-03 at 23 17 23](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/095fbcbf-7e26-43ac-bb43-c9471a237478)
+
+![WhatsApp Image 2023-06-03 at 23 29 41](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/39c92d76-8589-4d36-bea0-9a9e5ff450ac)
+
+![WhatsApp Image 2023-06-04 at 01 44 54](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/48c69921-267d-4e99-be6a-f73b69f452d2)
+
+![WhatsApp Image 2023-06-04 at 01 45 17](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/6166200b-a5ca-4478-b3d1-c5c0a166e860)
+
+![WhatsApp Image 2023-06-04 at 01 48 45](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/4bdd3f8e-1368-4e4e-9575-6e98384d166a)
+
+2.Modify the spice file to be able to plot a transient response:
+* SPICE3 file created from sky130_inv.ext - technology: sky130A
+
+.option scale=0.01u
+.include ./libs/pshort.lib
+.include ./libs/nshort.lib
+
+* .subckt sky130_inv A Y VPWR VGND
+M0 Y A VGND VGND nshort_model.0 ad=1435 pd=152 as=1365 ps=148 w=35 l=23
+M1 Y A VPWR VPWR pshort_model.0 ad=1443 pd=152 as=1517 ps=156 w=37 l=23
+C0 A VPWR 0.08fF
+C1 Y VPWR 0.08fF
+C2 A Y 0.02fF
+C3 Y VGND 0.18fF
+C4 VPWR VGND 0.74fF
+* .ends
+
+* Power supply 
+VDD VPWR 0 3.3V 
+VSS VGND 0 0V 
+
+* Input Signal
+Va A VGND PULSE(0V 3.3V 0 0.1ns 0.1ns 2ns 4ns)
+
+* Simulation Control
+.tran 1n 20n
+.control
+run
+.endc
+.end
+
+3.Open the spice file by typing ngspice sky130A_inv.spice. And Generate a graph using plot y vs time a :
+Circuit:** spice3 file created from sky130_inv.ext - technology: 
+
+Scale set
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+Warning: va: no DC value, transient time 0 value used
+
+Initial Transient Solution
+--------------------------
+Node                                                Voltage
+----                                                -------
+y                                                       3.3
+a                                                         0 
+vgnd                                                      0
+vpwr                                                      0
+va#branch                                               3.3
+vss#branch                                      3.33336e-12
+vdd#branch                                     -3.33339e-12
+
+Reference value: 0.00000e+00
+
+No. of Data Rows: 160
+ngspice 1 -> plot y vs time a 
+ngspice 1 ->
+
+![WhatsApp Image 2023-06-04 at 01 48 55](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/dd48c263-1b47-42d2-bd49-2cc675820d12)
+
+![WhatsApp Image 2023-06-04 at 02 16 50](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/ef96acde-aacf-41b8-9e30-850a3977941d)
