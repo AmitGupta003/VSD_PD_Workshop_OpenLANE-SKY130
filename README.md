@@ -154,7 +154,7 @@ hd: A PDK variation, hd stands for high density. We may see several files connec
 
 
 
-Design preparation steps
+### 1.Design preparation steps
 ```bash
 docker
 ./flow.tcl -interactive
@@ -178,8 +178,9 @@ results in the below image
 
 config.tcl will have the highest priority
 
-Before running synthesis, we need to prepare the datastructure and the file system Upon running the command,
+Before running synthesis, we need to prepare the datastructure and the file system Upon running the command
 
+### 2. Design Setup Stage:
 ```bash
 prep -design picorv32a
 ```
@@ -194,11 +195,17 @@ The LEF file contained within this directory will have all of the cell, layer, a
 run_synthesis
 ```
 
-runs the synthesis
+### 3. Run synthesis:
 
 ![WhatsApp Image 2023-06-03 at 13 23 25](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/0f33067a-b0c6-4d1a-a62f-9addf01afc95)
+
+After running synthesis, inside the runs/05-06_08-09/results/synthesis is picorv32a_synthesis.v which is the mapping of the netlist to standard cell library using ABC. The runs/05-06_08-09/reports/synthesis will contain synthesis statistic reports and static timing analysis reports. The runs/05-06_08-09/synthesis/logs contains log files for the terminal output dumps for running yosys and OpenSTA.
+
+After the results, we need to calculate the flop ratio.
+
 To find the FLOP RATIO i.e, number of D-Flip Flops:
 
+flop ratio = (no of flops)/(total no of cells)
 Number of cells: 14876
 
 Number of D FF: 1613
@@ -207,3 +214,158 @@ Flop count (Number of D-FF/ Number of cells) : 0.1084
 
 Flop count percentage: 10.84
 
+```bash
+Printing statistics.
+
+=== picorv32a ===
+
+   Number of wires:              14596
+   Number of wire bits:          14978
+   Number of public wires:        1565
+   Number of public wire bits:    1947
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:              14876
+     sky130_fd_sc_hd__a2111o_2       1
+     sky130_fd_sc_hd__a211o_2       35
+     sky130_fd_sc_hd__a211oi_2      60
+     sky130_fd_sc_hd__a21bo_2      149
+     sky130_fd_sc_hd__a21boi_2       8
+     sky130_fd_sc_hd__a21o_2        57
+     sky130_fd_sc_hd__a21oi_2      244
+     sky130_fd_sc_hd__a221o_2       86
+     sky130_fd_sc_hd__a22o_2      1013
+     sky130_fd_sc_hd__a2bb2o_2    1748
+     sky130_fd_sc_hd__a2bb2oi_2     81
+     sky130_fd_sc_hd__a311o_2        2
+     sky130_fd_sc_hd__a31o_2        49
+     sky130_fd_sc_hd__a31oi_2        7
+     sky130_fd_sc_hd__a32o_2        46
+     sky130_fd_sc_hd__a41o_2         1
+     sky130_fd_sc_hd__and2_2       157
+     sky130_fd_sc_hd__and3_2        58
+     sky130_fd_sc_hd__and4_2       345
+     sky130_fd_sc_hd__and4b_2        1
+     sky130_fd_sc_hd__buf_1       1656
+     sky130_fd_sc_hd__buf_2          8
+     sky130_fd_sc_hd__conb_1        42
+     sky130_fd_sc_hd__dfxtp_2     1613
+     sky130_fd_sc_hd__inv_2       1615
+     sky130_fd_sc_hd__mux2_1      1224
+     sky130_fd_sc_hd__mux2_2         2
+     sky130_fd_sc_hd__mux4_1       221
+     sky130_fd_sc_hd__nand2_2       78
+     sky130_fd_sc_hd__nor2_2       524
+     sky130_fd_sc_hd__nor2b_2        1
+     sky130_fd_sc_hd__nor3_2        42
+     sky130_fd_sc_hd__nor4_2         1
+     sky130_fd_sc_hd__o2111a_2       2
+     sky130_fd_sc_hd__o211a_2       69
+     sky130_fd_sc_hd__o211ai_2       6
+     sky130_fd_sc_hd__o21a_2        54
+     sky130_fd_sc_hd__o21ai_2      141
+     sky130_fd_sc_hd__o21ba_2      209
+     sky130_fd_sc_hd__o21bai_2       1
+     sky130_fd_sc_hd__o221a_2      204
+     sky130_fd_sc_hd__o221ai_2       7
+     sky130_fd_sc_hd__o22a_2      1312
+     sky130_fd_sc_hd__o22ai_2       59
+     sky130_fd_sc_hd__o2bb2a_2     119
+     sky130_fd_sc_hd__o2bb2ai_2     92
+     sky130_fd_sc_hd__o311a_2        8
+     sky130_fd_sc_hd__o31a_2        19
+     sky130_fd_sc_hd__o31ai_2        1
+     sky130_fd_sc_hd__o32a_2       109
+     sky130_fd_sc_hd__o41a_2         2
+     sky130_fd_sc_hd__or2_2       1088
+     sky130_fd_sc_hd__or2b_2        25
+     sky130_fd_sc_hd__or3_2         68
+     sky130_fd_sc_hd__or3b_2         5
+     sky130_fd_sc_hd__or4_2         93
+     sky130_fd_sc_hd__or4b_2         6
+     sky130_fd_sc_hd__or4bb_2        2
+
+   Chip area for module '\picorv32a': 147712.918400
+   ```
+  ![WhatsApp Image 2023-06-03 at 15 11 38](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/14693a08-ce20-48a9-b82a-046e92cac99c)
+
+![WhatsApp Image 2023-06-03 at 15 11 39](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/8bfef2f9-0273-4f3a-b8cf-c5b4a30eb1b1)
+
+![WhatsApp Image 2023-06-03 at 15 22 10](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/228bf6e4-e1e3-415b-a92d-6f6c6f12e69b)
+
+![WhatsApp Image 2023-06-03 at 15 22 10](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/d18f4da2-7be6-4cd8-9327-f0b538456d54)
+
+
+### Yosys synthesis:
+
+#### run_floorplan
+
+![WhatsApp Image 2023-06-03 at 15 44 40](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/f55376b0-0e5d-434a-bc4c-11b13fa4a709)
+
+![WhatsApp Image 2023-06-03 at 16 22 58](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/11f50691-ceae-4144-8927-4203b80e05a2)
+
+![WhatsApp Image 2023-06-03 at 17 06 17](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/d291add5-48bd-441b-8ae9-9e26cb77caea)
+
+## Floorplan Stage:
+### Review floor plan layout in magic
+
+![WhatsApp Image 2023-06-03 at 17 33 38](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/0b730ddc-0937-4c5e-a251-b622480d92e4)
+
+```bash
+% run floor_plan
+```
+
+##### 1.Determine the height and width of the core and die.
+The logic blocks are positioned in the core, which is located in the centre of the die. The width and height are determined by the dimensions of the standard cells on the netlist. The utilisation factor is (netlist area occupied)/(total core area). In practise, the utilisation factor is between 0.5 and 0.6. This is the only space utilised by the netlist; the remaining space is for routing and extra cells. Aspect ratio is defined as (height)/(width) of the core, hence only aspect ratio 1 produces a square core shape.
+
+##### 2.Define the position of the Preplaced Cell.
+These are pre-implemented reusable complicated logicblocks, modules, IPs, or macros (memory, clock-gating cell, mux, comparator, etc.). The core placement is user-defined and must be completed before placement and routing (thus preplaced cells). Because the automatic place and route tools will be unable to touch or move these preplaced cells, this must be clearly indicated.
+
+##### 3.Surround preplaced cells with decoupling capacitors. 
+The complex preplaced logicblock requires a high amount of current from the powersource for current switching. But since there is a distance between the main powersource and the logicblock, there will be voltage drop due to the resistance and inductance of the wire. This might cause the voltage at the logicblock to be not within the noise margin range anymore (logic is unstable). The solution is to use decoupling capacitors near the logic block, this capacitor will send enough current needed by the logicblock to switch within the noise margin range.
+
+##### 4.Power Scheduling.
+It is not possible to apply a decoupling capactor to all of the logic blocks on the chip, but just to the key pieces (preplaced complicated logicblocks). Switching a large number of elements to logic 0 may produce ground bounce due to the enormous amount of current that must be sinked at the same time, and switching to logic 1 may cause voltage droop due to insufficient current from the powersource to supply the requisite current of all elements. Because of ground bounce and voltage droop, the voltage may not be within the noise margin range. The answer is to have numerous powersource taps (power mesh) from which elements can source current from the nearest VDD tap and sink current to the nearest VSS tap.
+
+##### 5.Pin Placement
+The input and output ports are situated between the core and the die. The location of the ports is determined by the location of the cells connected to those ports on the core. Because this clock must be capable of driving the entire chip, the clock port is thicker (has the lowest resistance route) than the data ports.
+
+##### 6.Logical Cell Placement Blockage
+Blockage of Logical Cell Placement This ensures that the automated placement and routing tool does not place any cells on the die's pin positions.
+
+Priority order of configuration files to be used by the Openlane flow:
+
+sky130A_sky130_fd_sc_hd_config.tcl
+
+conifg.tcl
+
+floorplan.tcl - System default variables.
+
+The variables we are interested in as of now:
+
+Floorplan environment variables or switches:
+
+FP_CORE_UTIL - floorplan core utilization
+FP_ASPECT_RATIO - floorplan aspect ratio
+FP_CORE_MARGIN - Core to die margin area
+FP_IO_MODE - defines pin configurations (1 = equidistant/0 = not equidistant)
+FP_CORE_VMETAL - vertical metal layer
+FP_CORE_HMETAL - horizontal metal layer
+
+- Constrains added in the config.tcl for the simulation.
+set ::env(FP_CORE_UTIL) "80"
+```bash set ::env(PL_TARGET_DENSITY) "0.2"
+set ::env(PL_BASIC_PLACEMENT) "0"
+set ::env(GLB_RESIZER_TIMING_OPTIMIZATIONS) "0"
+set ::env(FP_SIZING) "absolute"
+set ::env(DIE_AREA) "0.0 0.0 1000.000 1000.000"
+set ::env(CORE_AREA) "5.25 10.88 900.00 900.00"
+
+set ::env(DIODE_INSERTION_STRATEGY) "4"
+set ::env(GLB_RT_MAXLAYER) "5"
+
+set ::env(VDD_NETS) [list {vccd1}]```
+
+
+set ::env(GND_NETS) [list {vssd1}]
