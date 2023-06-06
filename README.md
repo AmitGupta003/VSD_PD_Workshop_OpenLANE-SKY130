@@ -601,14 +601,14 @@ Routing resources analysis :===============================
 [INFO GRT-0053] Routing resources analysis:
           Routing      Original      Derated      Resource
 Layer     Direction    Resources     Resources    Reduction (%)
----------------------------------------------------------------
+
 li1        Vertical       311040          4004          98.71%
 met1       Horizontal     414720        370761          10.60%
 met2       Vertical       311040        310596          0.14%
 met3       Horizontal     207360        207064          0.14%
 met4       Vertical       124416        123148          1.02%
 met5       Horizontal      41472         41184          0.69%
----------------------------------------------------------------
+
 `
 `Final usage/overflow report: 
 
@@ -628,14 +628,12 @@ met5       Horizontal      41472         41184          0.69%
 `Final Congestion report :
 INFO GRT-0096] Final congestion report:
 Layer         Resource        Demand        Usage (%)    Max H / Max V / Total Overflow
----------------------------------------------------------------------------------------
 li1               4004             0            0.00%             0 /  0 /  0
 met1            370761          2585            0.70%             0 /  0 /  0
 met2            310596          2959            0.95%             0 /  0 /  0
 met3            207064             0            0.00%             0 /  0 /  0
 met4            123148             0            0.00%             0 /  0 /  0
 met5             41184             0            0.00%             0 /  0 /  0
----------------------------------------------------------------------------------------
 Total          1056757          5544            0.52%             0 /  0 /  0`
 
 ## Final Layout:
@@ -688,11 +686,11 @@ Open the def file via magic with no DRC errors:
 `magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/openlane/designs/05-06_08-09/runs/picorv32a/results/magic/picorv21a.gds`
 ![image](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/b34b380d-de42-4bfd-a7be-d52fe9770929)
 
-`...........
+`
 DESIGN picorv32a ;
 UNITS DISTANCE MICRONS 1000 ;
 DIEAREA ( 0 0 ) ( 1000 1000 ) ;
-............`
+`
 The die area here is in database units and 1 micron is equivalent to 1000 database units. ** Thus area of the die is (1000/1000)microns*(1000/1000)microns = 1 microns squared.**
 
 ### Summary in OpenLANE:
@@ -704,18 +702,18 @@ The die area here is in database units and 1 micron is equivalent to 1000 databa
 [INFO]: Generating Final Summary Report...
 [INFO]: Design Name: picorv32a
 Run Directory: /openLANE_flow/designs/picorv32a/runs/05-06_08-09
-----------------------------------------
+
 
 Magic DRC Summary:
 Source: /openLANE_flow/designs/picorv32a/runs/05-06_08-09/reports/magic//42-magic.drc
 Total Magic DRC violations is 0
-----------------------------------------
+
 
 LVS Summary:
 Source: /openLANE_flow/designs/picorv32a/runs/05-06_08-09/results/lvs/picorv32a.lvs_parsed.lef.log
 LVS reports no net, device, pin, or property mismatches.
 Total errors = 0
-----------------------------------------
+
 
 Antenna Summary:
 Source: /openLANE_flow/designs/picorv32a/runs/05-06_08-09/reports/routing//44-antenna.rpt
