@@ -552,17 +552,21 @@ We can establish two crucial properties of the cell by analysing the rising tran
 
 - Propagation Delay: The propagation delay is the time it takes for the output signal to travel from the cell's input to its output during the rising transition. It is calculated by subtracting the input delay from the entire rising transition time. The propagation delay reveals information about the cell's speed and responsiveness.
 
-- Rise Transition output transition time: 
-  2.25421 - 2.18636 = 0.006785 ns / 67.85ps
 
-- Fall Transition output transition time:
-Tr_f = 4.09605 - 4.05554 = 0.04051ns/40.51ps
+![WhatsApp Image 2023-06-04 at 02 17 16](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/ffe3ec0b-e7b7-47d5-97f3-9b9cc35cbc50)
 
-- Cell Rise Delay of output:
-D_r = 2.21701 - 2.14989 = 0.06689ns/66.89ps 
+![WhatsApp Image 2023-06-04 at 02 28 30](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/8352dea1-aa39-4e4b-86d0-691618febb5d)
 
-- Cell Fall Delay  of output:
-D_f = 4.07816 - 4.05011 = 0.02805ns/28.05ps
+![WhatsApp Image 2023-06-04 at 02 36 00](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/847ad98b-011c-458b-b159-7580bd81b805)
+
+![WhatsApp Image 2023-06-04 at 02 44 19](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/ebd7594d-7d36-475d-9b68-e19e6c58b19f)
+
+
+`rise time = 2.2046ns-2.1686ns=36ps
+fall time = 4.06659ns- 4.03954=26ps
+cell rise delay = 2.186ns-2.150ns= 36ps
+cell fall delay= 4.05326ns-4.050ns = 3.26ps`
+
 
 #### Routing Stage: 
 Maze Routing or Lee's Routing is a basic routing algorithm:
@@ -582,8 +586,157 @@ Signal short = this can be solved my moving the route to next layer using vias. 
 ##### OpenLane routing stage consists of two stages:
 
 - Global Routing - Create routing guides that can route across all networks. FastRoute Routing was employed.
-- Detailed Routing -which uses the global routing guide to link the pins with the least amount of wire and bends. TritonRoute is the tool utilised.
+- Detailed Routing - which uses the global routing guide to link the pins with the least amount of wire and bends. TritonRoute is the tool utilised.
 
 #### Triton Route
-Performs detailed routing and honours pre-processed route guides (created by global route) and employs MILP-based (Mixed Integer Linear Programming algorithm) panel routing scheme (uses panel as the grid guide for routing) with intra-layer parallel routing (routing occurs simultaneously in a single layer) and inter-layer sequential layer (routing occurs sequentially and not simultaneously).
-Respects a layer's desired direction. To prevent overlapping wires between layers and potential capacitance that can damage the signal, the metal layer direction is alternating (metal layer direction is set in the LEF file, e.g. met1 Horizontal, met2 Vertical, etc.).
+- Performs detailed routing and honours pre-processed route guides (created by global route) and employs MILP-based (Mixed Integer Linear Programming algorithm) panel routing scheme (uses panel as the grid guide for routing) with intra-layer parallel routing (routing occurs simultaneously in a single layer) and inter-layer sequential layer (routing occurs sequentially and not simultaneously).
+- Respects a layer's desired direction. To prevent overlapping wires between layers and potential capacitance that can damage the signal, the metal layer direction is alternating (metal layer direction is set in the LEF file, e.g. met1 Horizontal, met2 Vertical, etc.).
+
+
+Command used : `run_routing`
+
+`Routing resources analysis :
+
+Routing resources analysis :===============================
+[INFO GRT-0053] Routing resources analysis:
+          Routing      Original      Derated      Resource
+Layer     Direction    Resources     Resources    Reduction (%)
+---------------------------------------------------------------
+li1        Vertical       311040          4004          98.71%
+met1       Horizontal     414720        370761          10.60%
+met2       Vertical       311040        310596          0.14%
+met3       Horizontal     207360        207064          0.14%
+met4       Vertical       124416        123148          1.02%
+met5       Horizontal      41472         41184          0.69%
+---------------------------------------------------------------
+`
+`Final usage/overflow report: 
+
+[Overflow Report] Total Usage   : 118927
+[Overflow Report] Total Capacity: 374321
+[Overflow Report] Max H Overflow: 0
+[Overflow Report] Max V Overflow: 0
+[Overflow Report] Max Overflow  : 0
+[Overflow Report] H   Overflow  : 0
+[Overflow Report] V   Overflow  : 0
+[Overflow Report] Final Overflow: 0
+
+[INFO] Final usage          : 118927
+[INFO] Final number of vias : 70454
+[INFO] Final usage 3D       : 330289`
+
+`Final Congestion report :
+INFO GRT-0096] Final congestion report:
+Layer         Resource        Demand        Usage (%)    Max H / Max V / Total Overflow
+---------------------------------------------------------------------------------------
+li1               4004             0            0.00%             0 /  0 /  0
+met1            370761          2585            0.70%             0 /  0 /  0
+met2            310596          2959            0.95%             0 /  0 /  0
+met3            207064             0            0.00%             0 /  0 /  0
+met4            123148             0            0.00%             0 /  0 /  0
+met5             41184             0            0.00%             0 /  0 /  0
+---------------------------------------------------------------------------------------
+Total          1056757          5544            0.52%             0 /  0 /  0`
+
+## Final Layout:
+`magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/05-06_08-09/results/magic/picorv32a.mag`
+
+![image](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/611f25bf-f9b6-4bb2-b807-201caca2e202)
+
+Library Characterization: Throughout all RTL-to-GDSII stages, one item that the EDA tool constantly requires is data from the gate library, which contains all standard cells (and, or, buffer gates,...), macros, IPs, decaps, and so on. Within the library, the same cells may have different flavours (different sizes, delays, and threshold voltage). Greater drive strength allows for longer and thicker wires to be driven by larger cell sizes. Larger threshold voltages (because to larger size) will take longer to switch (slower clock) than smaller threshold voltages.
+
+The cell design flow must be followed by a single cell. The foundry Process Design Kits provide the inputs for making a single cell:
+- DRC & LVS Rules = tech files and poly subtrate paramters (CUSTOME LAYOUT COURSE)
+- SPICE Models = Threshold, linear regions, saturation region equations with added foundry parameters. Including NMOS and PMOS parameteres (Ciruit Deisgn and Spice simulation Course)
+- User defined Spec = Cell height (separation between power and ground rail), Cell width (depends on drive strength), supply voltage, metal layer requirement (which metal layer the cell needs to work)
+
+The library cell developer must adhere to the rules given on the inputs so that when the cell is used on a real design, there will be no errors. Next is design the library cell:
+
+1.Create the circuit function (CDL output)
+2.Model the pmos and nmos required by the input library.
+3.Create the best region by using Euler's path and a sticky diagram. This is possible with the magic layout tool.The results are as follows:
+
+Layout file GDSII
+LEF (defines cell width and height)
+spice netlist.cir (parasitics of each cell element: resistance, capacitance) Following design, characterization is performed using GUNA software, with outputs including timing, noise, and power characterisation.
+
+##### Magic Commands:
+Here is a great video guide on layout using Magic. And here is the Magic website with tutorials.
+
+Left click = lower-left corner of box
+Right click = upper-right corner of box
+"z" = zoom in, "Z" = zoom out, "ctrl + z" = zoom into the box
+Middle click on empty area will turn the box into empty (similar to erasing it)
+"s" three times will select all geometries electrically connected to each other
+:box = display parameters of selected box
+:grid 0.5um 0.5um = turn on/off and set grid
+:snap user = snap based on current grid
+:help snap = display help for command
+:drc style drc(full) = use all DRC when doing DRC checking
+:paint poly = paint "poly" to current box
+:drc why = show drc violation inside selected area (white dots are DRC violations )
+:erase poly = delete poly inside the box
+:select area = select all geometries inside the box
+:copy n 30 = copy selected geometries to North by 30 grid steps
+:move n 1 = move selected geometries to North by 1 step ("." to move more, "u" to undo)
+: select cell _08555_ = select a particular cell instance (e.g. cell _08555_ which can be searched in the DEF file)
+:cellname allcells = list all cells in the layout
+:cellname exists sky130_fd_sc_hd__xor3_4 = check if a cell exists
+:drc why = show DRC violation and also the DRC name which can be referenced from Sky130 PDK Periphery Rules.
+
+Open the def file via magic with no DRC errors:
+`magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/openlane/designs/05-06_08-09/runs/picorv32a/results/magic/picorv21a.gds`
+![image](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/b34b380d-de42-4bfd-a7be-d52fe9770929)
+
+`...........
+DESIGN picorv32a ;
+UNITS DISTANCE MICRONS 1000 ;
+DIEAREA ( 0 0 ) ( 1000 1000 ) ;
+............`
+The die area here is in database units and 1 micron is equivalent to 1000 database units. ** Thus area of the die is (1000/1000)microns*(1000/1000)microns = 1 microns squared.**
+
+### Summary in OpenLANE:
+`/home/vsduser/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/05-06_08-09/reports/manufacturability_report.rpt`
+
+`Design Name: picorv32a
+[INFO]: Calculating Runtime From the Start...
+[INFO]: Flow completed for picorv32a/05-06_08-09 in 1h36m44s
+[INFO]: Generating Final Summary Report...
+[INFO]: Design Name: picorv32a
+Run Directory: /openLANE_flow/designs/picorv32a/runs/05-06_08-09
+----------------------------------------
+
+Magic DRC Summary:
+Source: /openLANE_flow/designs/picorv32a/runs/05-06_08-09/reports/magic//42-magic.drc
+Total Magic DRC violations is 0
+----------------------------------------
+
+LVS Summary:
+Source: /openLANE_flow/designs/picorv32a/runs/05-06_08-09/results/lvs/picorv32a.lvs_parsed.lef.log
+LVS reports no net, device, pin, or property mismatches.
+Total errors = 0
+----------------------------------------
+
+Antenna Summary:
+Source: /openLANE_flow/designs/picorv32a/runs/05-06_08-09/reports/routing//44-antenna.rpt
+Number of pins violated: 19
+Number of nets violated: 16
+[SUCCESS]: Flow Completed Without Fatal Errors.`
+
+To ensure proper signal timing and avoid any issues, we need to perform certain steps in the IC design process. One important step is to run post-routing Static Timing Analysis (STA) using the run_parasitics_sta command.
+
+Here's what happens during this process:
+- Extraction of Parasitic Resistance and Capacitance: The first step is to extract the parasitic resistance and capacitance from the design layout. The Standard Parasitics Extraction Format (SPEF) is used for this. The retrieved SPEF file contains information about the parasitic effects that can affect signal delays in the real world.
+
+
+- STA in Multiple Corners: After the parasitic extraction is complete, we execute STA on the extracted SPEF. Multi-corner STA entails analysing the design's time behaviour under various corner conditions. It takes into account three corners: minimum, maximum, and nominal. We can check that the design fulfils the needed timing limits by examining the timing in these various circumstances.
+
+- Slack Analysis: The introduction of real-world parasitics can potentially worsen the slack, which is the timing margin between the required and actual arrival times of signals. Both setup and hold slack can be affected. Setup slack refers to the time difference between the launch and capture of signals, while hold slack refers to the time for which a signal must be held stable. It is important to ensure that the slack is within acceptable levels for proper circuit functionality.
+
+- SPEF and STA Logs: The results of the SPEF extraction and STA analysis can be found in the designated directories. The extracted SPEF file is typically located under runs/05-06_08-09/results/routing, while the STA log files are stored in runs/05-06_08-09/logs/signoff. These logs provide detailed information about timing violations, slack values, and other relevant data for analysis.
+
+- Timing ECO: If the slack values are not within the desired levels, a Timing Engineering Change Order (ECO) can be performed. This involves making adjustments to the design, such as tweaking the netlist or modifying the routing, to improve the slack and meet the required timing constraints.
+
+- Once the post-routing STA and timing ECO are completed, the final step is to generate the GDSII (Graphic Data System II) file for fabrication. This is done by running run_magic, which utilizes Magic to create the GDSII file. The resulting GDSII file, located at runs/05-06_08-09/results/signoff/picorv32a.gds, can be further processed or sent for manufacturing.
+
+![image](https://github.com/AmitGupta003/VSD_PD_Workshop_OpenLANE-SKY130/assets/135353855/bca58b5b-f8df-47c5-958d-c3478de89c6f)
